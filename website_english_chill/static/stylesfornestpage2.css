@@ -1,0 +1,213 @@
+/* Общие стили */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    background-image: url('/static/images/backgroundforindex.jpg');
+
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Заголовок */
+.page-title {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    max-width: 90%;
+}
+
+/* Layout */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 95%;
+}
+
+/* Контейнер формы */
+.container {
+    font-size: 14px;
+    text-align: center;
+    background: rgba(248, 248, 248, 0.95);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Поле текста */
+textarea {
+    width: 98%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    font-size: 14px;
+}
+
+/* Select и файл */
+.form-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Селект */
+select {
+    font-size: 14px;
+    padding: 10px 25px;
+    border-radius: 6px;
+    border: none;
+    background-color: #c57070f5;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    appearance: none;
+    width: 160px;
+    background-image:
+        linear-gradient(45deg, transparent 50%, white 50%),
+        linear-gradient(135deg, white 50%, transparent 50%);
+    background-position:
+        calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px);
+    background-size: 5px 5px;
+    background-repeat: no-repeat;
+}
+
+select:hover,
+select:focus {
+    background-color: #a84d4d;
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(197, 112, 112, 0.7);
+    outline: none;
+}
+
+/* Файл */
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    font-size: 14px;
+    padding: 10px 25px;
+    border-radius: 6px;
+    border: none;
+    background-color: #c57070f5;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: 160px;
+    text-align: center;
+    display: inline-block;
+}
+
+.custom-file-upload:hover,
+.custom-file-upload:focus {
+    background-color: #a84d4d;
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(197, 112, 112, 0.7);
+    outline: none;
+}
+
+/* Кнопка Create Post */
+button {
+    font-size: 14px;
+    padding: 12px 60px;
+    border-radius: 6px;
+    border: none;
+    background-color: #c57070f5;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    appearance: none;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+}
+
+button:hover,
+button:focus {
+    background-color: #a84d4d;
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(197, 112, 112, 0.7);
+    outline: none;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Инструкции */
+.instructions {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    max-width: 300px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instructions h2 {
+    margin-top: 0;
+    color: #000000;
+}
+
+.instructions ul {
+    padding-left: 18px;
+    margin-bottom: 20px;
+}
+
+.instructions li {
+    margin-bottom: 10px;
+}
+
+/* Ссылка-кнопка под инструкцией */
+/* Кнопка-ссылка внутри instructions */
+.custom-link-button.rating-link {
+    margin-top: 15px;
+    display: block;
+    padding: 10px 60px;
+    background-color: #c57070f5;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.custom-link-button.rating-link:hover,
+.custom-link-button.rating-link:focus {
+    background-color: #a84d4d;
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(197, 112, 112, 0.7);
+    outline: none;
+}

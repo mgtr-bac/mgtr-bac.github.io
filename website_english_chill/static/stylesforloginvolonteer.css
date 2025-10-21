@@ -1,0 +1,229 @@
+/* Фон и центрирование по всему экрану */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* расположить у верха */
+    padding-top: 50px; /* отступ сверху, чтобы окно было чуть выше */
+    background-image: url('backgroundforindex.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Основной контейнер */
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px; /* уменьшил padding */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    max-width: 400px; /* уменьшил ширину */
+    width: 90%;
+}
+
+/* скрываем радиокнопки */
+.toggle-buttons input[type="radio"] {
+    display: none;
+}
+
+/* Общий стиль для тела страницы */
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-image: url('/static/images/backgroundforindex.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+/* Верхний блок с приветствием, закрепленный вверху, чуть ниже края */
+.top-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  position: fixed;
+  top: 50px; /* чуть ниже верха */
+  background: transparent;
+  z-index: 9999;
+}
+
+/* Внутренний блок с текстом приветствия */
+.header-text {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-text h1 {
+  margin: 0 0 10px 0;
+  font-size: 2rem;
+  color: #333;
+}
+
+.header-text p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Контейнер с вариантами входа/регистрации — по центру */
+#welcome-block,
+#welcome-block + #auth-form {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Основной контейнер */
+.container {
+  max-width: 400px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Стиль переключателей (вход/регистрация) */
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.toggle-buttons input[type="radio"] {
+  display: none;
+}
+
+.toggle-buttons label {
+  padding: 12px 25px;
+  background-color: #eee89b;
+  color: #bd5555;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.toggle-buttons label:hover,
+.toggle-buttons input[type="radio"]:checked + label {
+  background-color: #d3d160; /* чуть темнее при наведении */
+  color: #8a3a3a; /* чуть темнее или можно оставить тот же */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Форма */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 15px;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  border-color: #506df0;
+  outline: none;
+  box-shadow: 0 0 8px rgba(80, 109, 240, 0.5);
+}
+
+/* Стили для кнопки отправки */
+button {
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #eee89b, #eee89b);
+  color: #bd5555;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Анимация и цвет при наведении для кнопки */
+button:hover {
+  background: linear-gradient(135deg, #d3d160, #d3d160);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Для более красивых и анимированных кнопок */
+.btn {
+  padding: 15px 30px;
+  font-size: 1.5em;
+  border-radius: 50px;
+  font-weight: 600;
+  display: inline-block;
+  cursor: pointer;
+  background: linear-gradient(135deg, #eee89b, #eee89b);
+  color: #bd5555;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  border: none;
+  transition: all 0.4s ease;
+}
+
+/* Эффекты при наведении для кнопок */
+.btn:hover {
+  background: linear-gradient(135deg, #d3d160, #d3d160);
+  color: #8a3a3a;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Можно добавить активные эффекты, если нужно */
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+  /* Стиль для кнопки "Enter" с анимацией, как у кнопки "Register" */
+#enter-btn {
+  padding: 15px 30px;
+  font-size: 1.5em;
+  border-radius: 50px;
+  font-weight: 600;
+  display: inline-block;
+  cursor: pointer;
+  background: linear-gradient(135deg, #eee89b, #eee89b);
+  color: #bd5555;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  border: none;
+  transition: all 0.4s ease;
+}
+
+/* Эффекты при наведении для кнопки "Enter" */
+#enter-btn:hover {
+  background: linear-gradient(135deg, #d3d160, #d3d160);
+  color: #8a3a3a;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+}

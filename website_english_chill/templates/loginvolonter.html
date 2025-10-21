@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Авторизация</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesforloginvolonteer.css') }}" />
+</head>
+<body>
+<div class="top-header">
+    <div class="header-text">
+        <h1>Hello dear Volonter!</h1>
+        <p>Please register or log in to our project</p>
+    </div>
+</div>
+
+<div class="container" id="welcome-block">
+    <h2>Please select an action:</h2>
+    <div class="toggle-buttons">
+        <input type="radio" id="action-login" name="action" checked>
+        <label id="open-login-btn" for="action-login">Entrance</label>
+        <input type="radio" id="action-register" name="action">
+        <label for="action-register">Registration</label>
+    </div>
+</div>
+
+<div class="container" id="auth-form" style="display: none;">
+    <div class="form login-form" style="display: block;">
+        <h2>Log in to your account</h2>
+        <form id="login-form">
+            <input type="text" placeholder="Логин" name="login" required />
+            <input type="password" placeholder="Пароль" name="password" required />
+            <button type="submit">Enter</button>
+        </form>
+    </div>
+    <div class="form register-form" style="display: none;">
+        <h2>Create an account</h2>
+        <form id="register-form">
+            <input type="text" placeholder="Login" name="login" required />
+            <input type="password" placeholder="Password" name="password" required />
+            <input type="password" placeholder="Password confirmation" name="password_check" required />
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+
+<script>
+  const loginRadio = document.getElementById('action-login');
+  const registerRadio = document.getElementById('action-register');
+  const welcomeBlock = document.getElementById('welcome-block');
+  const authForm = document.getElementById('auth-form');
+  const loginFormDiv = document.querySelector('.login-form');
+  const registerFormDiv = document.querySelector('.register-form');
+
+  function showForm() {
+    welcomeBlock.style.display = 'none';
+    authForm.style.display = 'block';
+    if (loginRadio.checked) {
+      loginFormDiv.style.display = 'block';
+      registerFormDiv.style.display = 'none';
+    } else {
+      loginFormDiv.style.display = 'none';
+      registerFormDiv.style.display = 'block';
+    }
+  }
+
+  loginRadio.addEventListener('change', showForm);
+  registerRadio.addEventListener('change', showForm);
+
+  // Логика входа
+  document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const login = this.login.value.trim();
+    const password = this.password.value;
+
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({login: login, password: password})
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'success') {
+        // Сохраняем логин для последующего использования
+        localStorage.setItem('currentLogin', login);
+        window.location.href = '/nextpage2';
+      } else {
+        alert('Ошибка: ' + (data.message || 'Неизвестная ошибка'));
+      }
+    })
+    .catch(() => alert('Ошибка соединения'));
+  });
+
+  // Логика регистрации
+  document.getElementById('register-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const login = this.login.value.trim();
+    const password = this.password.value;
+    const password_check = this.password_check.value;
+
+    if (password !== password_check) {
+      alert('Error: Passwords dont match');
+      return;
+    }
+
+    fetch('/api/register', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({login: login, password: password, password_check: password_check})
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'success') {
+        alert('Registration was successful! You will now be redirected to the next page.');
+        localStorage.setItem('currentLogin', login);
+        window.location.href = '/nextpage2';
+      } else {
+        alert('Ошибка: ' + (data.message || 'Неизвестная ошибка'));
+      }
+    })
+    .catch(() => alert('Ошибка соединения'));
+  });
+
+  document.getElementById('open-login-btn').addEventListener('click', function() {
+    welcomeBlock.style.display = 'none';
+    authForm.style.display = 'block';
+    loginRadio.checked = true;
+    registerRadio.checked = false;
+    showForm();
+  });
+</script>
+</body>
+</html>

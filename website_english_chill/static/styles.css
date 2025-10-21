@@ -1,0 +1,84 @@
+
+/* ======= ОБЩИЙ ФОН ======= */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/static/images/backgroundforindex.jpg'); /* замените путь при необходимости */
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* ======= ОСНОВНОЙ КОНТЕЙНЕР ======= */
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85); /* слегка прозрачный для читаемости */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    max-width: 600px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ======= ВНУТРЕННИЙ КОНТЕНТ ======= */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ======= ЗАГОЛОВОК ======= */
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* ======= ПОДЗАГОЛОВОК / ТЕКСТ ======= */
+p {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    font-weight: normal;
+    text-align: center;
+}
+
+/* ======= КОНТЕЙНЕР КНОПОК ======= */
+.buttons-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ======= КРАСИВЫЕ КНОПКИ ======= */
+.btn {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+    background: linear-gradient(135deg, #eee89b, #eee89b);
+    color: #bd5555;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+/* ======= ЭФФЕКТ НАВЕДЕНИЯ НА КНОПКУ ======= */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #d3d160, #d3d160);
+    color: #8a3a3a;
+}
+

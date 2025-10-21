@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>English.chill</title>
+    <link rel="stylesheet" href="/static/stylesfornestpage2.css" />
+</head>
+<body>
+    <div class="page-title">
+        Here you can create a new post.
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>Create a New Post</h1>
+
+            <form id="postForm" action="/create_post" method="POST" enctype="multipart/form-data">
+                <textarea name="post_text" placeholder="Write your post here..." required></textarea>
+
+                <div class="form-controls">
+                    <select name="category" required>
+                        <option value="">Select a folder</option>
+                        <option value="listening">Listening</option>
+                        <option value="vocabulary">Vocabulary</option>
+                        <option value="reading">Reading</option>
+                        <option value="writing">Writing</option>
+                        <option value="speaking">Speaking</option>
+                        <option value="grammar">Grammar</option>
+                    </select>
+
+                    <div class="file-upload-wrapper">
+                        <label for="file-upload" class="custom-file-upload">Select file</label>
+                        <input id="file-upload" type="file" name="attachment" />
+                        <span id="file-name">No file chosen</span>
+                    </div>
+                </div>
+
+                <!-- Скрытое поле с логином пользователя -->
+                <input type="hidden" name="login" id="hiddenLogin" value="">
+
+                <div class="buttons">
+                    <button type="submit">Create Post</button>
+                </div>
+
+                <div id="resultMessage" style="margin-top: 15px; font-weight: bold;"></div>
+            </form>
+        </div>
+
+        <div class="instruction-block">
+            <div class="instructions">
+                <h2>Instructions</h2>
+                <ul>
+                    <li><strong>Text field</strong> — enter your post content.</li>
+                    <li><strong>Select a folder</strong> — necessarily choose a category for your post.</li>
+                    <li><strong>Select file</strong> — attach a photo, audio, or document.</li>
+                    <li><strong>Create Post</strong> — submit your post to the selected folder.</li>
+                    <li><strong>View the rating</strong> — review your rating among other volunteers.</li>
+                </ul>
+            </div>
+
+            <div class="rating-button-wrapper">
+                <a href="#" class="custom-link-button rating-link">View the rating</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно рейтинга -->
+    <div id="ratingModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button" onclick="document.getElementById('ratingModal').style.display='none'">×</span>
+            <h2>Rating of the volunteer</h2>
+            <ul id="ratingList"></ul>
+        </div>
+    </div>
+
+    <style>
+        .modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fileInput = document.getElementById('file-upload');
+            const fileName = document.getElementById('file-name');
+            const form = document.getElementById('postForm');
+            const resultMessage = document.getElementById('resultMessage');
+            const loginField = document.getElementById('hiddenLogin');
+
+            // Подставляем login из localStorage в скрытое поле
+            const currentLogin = localStorage.getItem('currentLogin');
+            if (currentLogin) {
+                loginField.value = currentLogin;
+            } else {
+                alert('Вы не авторизованы! Пожалуйста, войдите в систему.');
+                // Можно редиректить на страницу логина:
+                // window.location.href = '/login';
+            }
+
+            fileInput.addEventListener('change', () => {
+                fileName.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file chosen';
+            });
+
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                // Проверка, что логин заполнен
+                if (!loginField.value) {
+                    resultMessage.style.color = 'red';
+                    resultMessage.textContent = 'Пожалуйста, войдите в систему.';
+                    return;
+                }
+
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        resultMessage.style.color = 'green';
+                        resultMessage.textContent = 'Post was created!';
+                        form.reset();
+                        fileName.textContent = 'No file chosen';
+                    } else {
+                        resultMessage.style.color = 'red';
+                        resultMessage.textContent = data.error || 'Error when saving';
+                    }
+                } catch (error) {
+                    resultMessage.style.color = 'red';
+                    resultMessage.textContent = 'Network error';
+                    console.error('Fetch error:', error);
+                }
+            });
+
+            // Обработка рейтинга
+            const ratingButton = document.querySelector('.rating-link');
+            const modal = document.getElementById('ratingModal');
+            const ratingList = document.getElementById('ratingList');
+
+            ratingButton.addEventListener('click', async function(e) {
+                e.preventDefault();
+                try {
+                    const response = await fetch('/get_rating');
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const data = await response.json();
+
+                    ratingList.innerHTML = '';
+                    data.forEach(([login, score], index) => {
+                        const li = document.createElement('li');
+                        li.textContent = `${index + 1}. ${login} — ${score} баллов`;
+                        ratingList.appendChild(li);
+                    });
+
+                    modal.style.display = 'flex';
+                } catch (error) {
+                    alert('Rating loading error: ' + error.message);
+                    console.error(error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

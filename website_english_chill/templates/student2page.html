@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>English.chill</title>
+<link rel="stylesheet" href="\static\stylesforstudent2page.css" />
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        width: 90vw;
+        max-width: 600px;
+        height: 60vh;
+        box-sizing: border-box;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        overflow: auto;
+        background: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .second-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .folder-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        cursor: pointer;
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        font-weight: bold;
+    }
+
+    .folder-button:hover {
+        transform: scale(1.08);
+        background-color: #fce77d;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .folder-button img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .folder-button:hover img {
+        transform: scale(1.05);
+    }
+
+    .folder-button p {
+        margin: 0;
+        font-size: 15px;
+        font-weight: bold;
+        color: #333;
+        transition: color 0.3s ease;
+    }
+
+    .folder-button:hover p {
+        color: #8a3a3a;
+    }
+
+    #posts-container {
+        display: none;
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px 0;
+    }
+
+    #posts-container h2 {
+        margin-top: 0;
+        text-transform: capitalize;
+    }
+
+    .post {
+        background: white;
+        margin-bottom: 15px;
+        padding: 12px 18px;
+        border-radius: 6px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        width: 80%;
+        max-width: 600px;
+        cursor: pointer;
+        text-align: left;
+        transition: transform 0.2s ease;
+    }
+
+    .post:hover {
+        transform: scale(1.02);
+    }
+
+    .post-author {
+        font-style: italic;
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .back-button {
+    margin: 10px 0 20px 0;
+    width: 280px;          /* фиксированная ширина для "Back to folders" */
+    padding: 12px 0;       /* увеличенный вертикальный padding */
+    border: none;
+    background-color: #eee89b;
+    color: #8a3a3a;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;       /* увеличенный размер шрифта */
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #d3d160;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 220px;          /* фиксированная ширина для остальных кнопок */
+    padding: 12px 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+button:hover {
+    transform: scale(1.08);
+    background-color: #fce77d;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+    #category-title {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #444;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Главное окно с папками -->
+    <div id="folders-container">
+        <h1>Here you can select the folder with the English content that you need.</h1>
+        <div class="second-container">
+            <a href="#" class="folder-button" data-category="reading">
+                <img src="/static/icons/reading.png" alt="Reading" />
+                <p>Reading</p>
+            </a>
+            <a href="#" class="folder-button" data-category="writing">
+                <img src="/static/icons/writing.png" alt="Writing" />
+                <p>Writing</p>
+            </a>
+            <a href="#" class="folder-button" data-category="vocabulary">
+                <img src="/static/icons/vocabulary.png" alt="Vocabulary" />
+                <p>Vocabulary</p>
+            </a>
+            <a href="#" class="folder-button" data-category="speaking">
+                <img src="/static/icons/speaking.png" alt="Speaking" />
+                <p>Speaking</p>
+            </a>
+            <a href="#" class="folder-button" data-category="grammar">
+                <img src="/static/icons/grammar.png" alt="Grammar" />
+                <p>Grammar</p>
+            </a>
+            <a href="#" class="folder-button" data-category="listening">
+                <img src="/static/icons/listening.png" alt="Listening" />
+                <p>Listening</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Окно с постами -->
+    <div id="posts-container">
+        <button class="back-button">Back to folders</button>
+        <h2 id="category-title"></h2>
+        <div id="posts-list"></div>
+    </div>
+
+</div>
+
+<script>
+    const foldersContainer = document.getElementById('folders-container');
+    const postsContainer = document.getElementById('posts-container');
+    const postsList = document.getElementById('posts-list');
+    const categoryTitle = document.getElementById('category-title');
+    const backButton = document.querySelector('.back-button');
+
+    document.querySelectorAll('.folder-button').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const category = button.getAttribute('data-category');
+            categoryTitle.textContent = category;
+
+            try {
+                const response = await fetch(`/get_posts?category=${category}`);
+                if (!response.ok) throw new Error('Network error');
+                const posts = await response.json();
+
+                postsList.innerHTML = '';
+                if (posts.length === 0) {
+                    postsList.innerHTML = '<p>No posts available.</p>';
+                } else {
+                    posts.forEach((post, index) => {
+                        const postPreview = post.text.split(' ').slice(0, 6).join(' ') + '...';
+
+                        const postLink = document.createElement('div');
+                        postLink.classList.add('post');
+                        postLink.textContent = postPreview;
+                        postLink.style.cursor = 'pointer';
+                        postLink.addEventListener('click', () => showFullPost(post));
+
+                        postsList.appendChild(postLink);
+                    });
+                }
+
+                foldersContainer.style.display = 'none';
+                postsContainer.style.display = 'flex';
+            } catch (error) {
+                alert('Failed to load posts: ' + error.message);
+            }
+        });
+    });
+
+    backButton.addEventListener('click', () => {
+        postsContainer.style.display = 'none';
+        foldersContainer.style.display = 'block';
+    });
+
+    function showFullPost(post) {
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100vw';
+        overlay.style.height = '100vh';
+        overlay.style.background = 'rgba(0, 0, 0, 0.6)';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+        overlay.style.zIndex = '9999';
+
+        const postBox = document.createElement('div');
+        postBox.style.background = '#fff';
+        postBox.style.padding = '20px';
+        postBox.style.borderRadius = '10px';
+        postBox.style.width = '90%';
+        postBox.style.maxWidth = '600px';
+        postBox.style.maxHeight = '80vh'; // ограничим высоту
+        postBox.style.overflowY = 'auto'; // добавим прокрутку по вертикали
+        postBox.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+        postBox.style.display = 'flex';
+        postBox.style.flexDirection = 'column';
+        postBox.style.alignItems = 'stretch';
+
+        // Добавляем ссылку на файл, если есть
+        let fileHtml = '';
+        if (post.filename) {
+            const fileUrl = `/uploads/${encodeURIComponent(post.filename)}`;
+            fileHtml = `
+                <div style="margin-bottom: 15px;">
+                    <a href="${fileUrl}" target="_blank" download style="color:#0077cc; text-decoration: underline; font-weight: 600;">
+                        📎 Attached file: ${post.filename}
+                    </a>
+                </div>
+            `;
+        }
+
+        postBox.innerHTML = `
+            ${fileHtml}
+            <div style="font-size: 14px; color: #666; margin-bottom: 8px;">
+                Author: ${post.author || 'Unknown'}
+            </div>
+            <pre style="font-size: 16px; color: #333; white-space: pre-wrap; word-wrap: break-word;">${post.text}</pre>
+            <button style="align-self: flex-end; margin-top: 15px; padding: 8px 16px; background: #eee89b; color:#8a3a3a; border: none; border-radius: 5px; cursor: pointer;">
+                Close
+            </button>
+        `;
+
+        postBox.querySelector('button').addEventListener('click', () => {
+            document.body.removeChild(overlay);
+        });
+
+        overlay.appendChild(postBox);
+        document.body.appendChild(overlay);
+    }
+</script>
+</body>
+</html>

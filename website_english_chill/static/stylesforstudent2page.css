@@ -1,0 +1,190 @@
+/* Общий стиль страницы */
+body {
+    margin: 0;
+    height: 100vh;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('/static/images/backgroundforindex.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Верхний белый блок с заголовком */
+.container {
+    font-size: 14px;
+    text-align: center;
+    background: rgba(248, 248, 248, 0.9);
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    max-width: 600px;
+    width: 90%;
+    margin-bottom: 30px;
+}
+
+/* Контейнер с иконками */
+.folder-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    max-width: 700px;
+    width: 90%;
+}
+
+/* Сетка с иконками */
+.folder-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Центрируем окно и делаем 2 ряда по 3 папки */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Основной контейнер */
+.container {
+    width: 90vw;
+    max-width: 600px;
+    height: 60vh;
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: auto;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Заголовок */
+h1 {
+    text-align: center;
+}
+
+/* Сетка папок: 3 колонки */
+.second-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Кнопка папки */
+.folder-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    background: white;
+    padding: 15px;
+    border-radius: 10px; /* чуть больше радиус */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* тень посильнее */
+    transition: transform 0.2s ease;
+}
+
+/* Эффект наведения */
+.folder-button:hover {
+    transform: scale(1.07);
+}
+
+/* Иконка папки — увеличенный размер */
+.folder-button img {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Текст под иконкой */
+.folder-button p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* Контейнер с постами */
+#posts-container {
+    display: none;
+    width: 100%;
+    max-width: 650px; /* ограничим максимальную ширину */
+    margin: 0 auto; /* по центру */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 0;
+}
+
+/* Заголовок категории */
+#posts-container h2 {
+    margin-top: 0;
+    text-transform: capitalize;
+}
+
+/* Одиночный пост */
+.post {
+    background: white;
+    margin-bottom: 15px;
+    padding: 12px 18px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    width: 80%;
+    max-width: 600px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.2s ease;
+}
+
+/* Эффект наведения на пост */
+.post:hover {
+    transform: scale(1.02);
+}
+
+/* Автор поста */
+.post-author {
+    font-style: italic;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Кнопка "Назад" */
+.back-button {
+    margin: 10px 0 20px 0;
+    padding: 8px 16px;
+    border: none;
+    background-color:  #eee89b;
+    color:#8a3a3a;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Эффект наведения на кнопку "Назад" */
+.back-button:hover {
+    background-color:  #d3d160;
+}
+
+/* Заголовок категории */
+#category-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #444;
+}
